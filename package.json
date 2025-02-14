@@ -1,0 +1,21 @@
+{
+  "name": "cosmic-bot",
+  "version": "1.0.0",
+  "description": "A space-themed Discord Bot that provides cosmic facts, space trivia, and more.",
+  "main": "index.js",
+  "keywords": [
+    "space",
+    "cosmic",
+    "discord",
+    "bot",
+    "trivia",
+    "facts",
+    "astronomy"
+  ],
+  "author": "",
+  "license": ".net",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7"
+  }
+}
