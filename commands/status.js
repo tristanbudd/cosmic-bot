@@ -32,10 +32,6 @@ module.exports = {
                     value: ping + "ms",
                 },
                 {
-                    name: "Server Count:",
-                    value: interaction.client.guilds.cache.size
-                },
-                {
                     name: "CPU Architecture:",
                     value: require("os").arch()
                 },

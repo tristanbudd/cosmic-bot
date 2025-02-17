@@ -1,0 +1,38 @@
+{
+  "easy": [
+    {
+      "question": "What is the closest planet to the Sun?",
+      "choices": ["Mercury", "Venus", "Earth", "Mars"],
+      "answer": "Mercury"
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "choices": ["Earth", "Jupiter", "Saturn", "Neptune"],
+      "answer": "Jupiter"
+    }
+  ],
+  "medium": [
+    {
+      "question": "What is the name of the galaxy that contains our Solar System?",
+      "choices": ["Andromeda", "Milky Way", "Whirlpool", "Sombrero"],
+      "answer": "Milky Way"
+    },
+    {
+      "question": "What is the most abundant gas in the Earth's atmosphere?",
+      "choices": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"],
+      "answer": "Nitrogen"
+    }
+  ],
+  "hard": [
+    {
+      "question": "What is the name of the first artificial Earth satellite?",
+      "choices": ["Explorer 1", "Sputnik 1", "Vanguard 1", "Luna 1"],
+      "answer": "Sputnik 1"
+    },
+    {
+      "question": "What is the name of the first human to journey into outer space?",
+      "choices": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"],
+      "answer": "Yuri Gagarin"
+    }
+  ]
+}

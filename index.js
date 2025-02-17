@@ -4,6 +4,7 @@ const path = require("node:path");
 const package_data = JSON.parse(fs.readFileSync("package.json", 'utf8'))
 const version = package_data.version
 const { set_start_time } = require("./modules/uptime");
+const { send_client_error } = require("./modules/error");
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder  } = require("discord.js");
 
 const client = new Client({
@@ -17,55 +18,6 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
     ],
 });
-
-/* Standardised Clientside Error Messages */
-async function send_client_error(data, error_type, error) {
-    if (!data || !error_type || !error || !data.user || !data.user.tag) {
-        console.error("Error | Issue Sending Clientside Error | Missing Data");
-        return;
-    }
-
-    const error_embed = new EmbedBuilder()
-        .setColor(error_type.toLowerCase() === "error" ? 0xC91D1D : 0xE8B130)
-        .setTitle("Cosmic Bot | " + error_type.charAt(0).toUpperCase() + error_type.slice(1).toLowerCase() + " Notice")
-        .setDescription("An Error Has Occurred While Processing Your Request.")
-        .setThumbnail("https://google.com")
-        .addFields(
-            {
-                name: "Error Type:",
-                value: error_type.charAt(0).toUpperCase() + error_type.slice(1).toLowerCase() + (error_type.toLowerCase() === "error" ? " (Something went completely wrong, and needs fixing)" : " (Can be generally ignored, if causing any issues please report)")
-            },
-            {
-                name: "Error Data:",
-                value: String(error).length > 1024 ? String(error).substring(0, 1024) + "..." : String(error)
-            },
-            {
-                name: "Error Timestamp:",
-                value: "<t:" + Math.floor(Date.now() / 1000) + ">"
-            },
-            {
-                name: "Support URL:",
-                value: "(Replace This)"
-            }
-        )
-        .setTimestamp()
-        .setFooter({
-            text: "Cosmic Bot | Version: " + version,
-            iconURL: "https://www.google.com"
-        });
-
-    if (data.replied || data.deferred) {
-        await data.followUp({
-            embeds: [error_embed],
-            flags: 64
-        });
-    } else {
-        await data.reply({
-            embeds: [error_embed],
-            flags: 64
-        });
-    }
-}
 
 /* Creating a Collection to Store Commands */
 client.commands = new Collection();
@@ -90,7 +42,7 @@ client.on(Events.ClientReady, () => {
     console.log("Command Registration | Beginning The Registration Process: ");
     client.guilds.cache.forEach(guild => {
         guild.commands.set(client.commands.map(command => command.data)).then(_ => {
-            console.log("| Successfully Registered Commands In: " + guild.name);
+            console.log("| Registered Commands In: " + guild.name + " (" + guild.id + ")");
         });
     });
     console.log("Command Registration | Successfully Registered: " + client.commands.size + " Command(s) In: " + client.guilds.cache.size + " Server(s)");
@@ -163,5 +115,5 @@ client.login(process.env.BOT_TOKEN)
         console.log("Authentication | Login Successful!");
     })
     .catch(error => {
-        console.error("Authentication | Error Logging In:" + error);
+        console.error("Authentication | Error Logging In: " + error);
     });
