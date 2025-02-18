@@ -1,3 +1,6 @@
+const fs = require("fs")
+const package_data = JSON.parse(fs.readFileSync("package.json", "utf8"))
+const version = package_data.version
 const {EmbedBuilder} = require("discord.js");
 
 async function send_client_error(data, error_type, error) {

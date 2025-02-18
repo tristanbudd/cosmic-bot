@@ -1,11 +1,9 @@
 require("dotenv").config()
 const fs = require("node:fs");
 const path = require("node:path");
-const package_data = JSON.parse(fs.readFileSync("package.json", 'utf8'))
-const version = package_data.version
 const { set_start_time } = require("./modules/uptime");
 const { send_client_error } = require("./modules/error");
-const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder  } = require("discord.js");
+const { Client, Collection, Events, GatewayIntentBits  } = require("discord.js");
 
 const client = new Client({
     intents: [
@@ -101,9 +99,8 @@ client.once(Events.ClientReady, client_data => {
         console.log("| Command Count: " + client.commands.size + " Command(s)")
         console.log(" ")
         console.log("Bot Support |")
-        console.log("| Invite URL: (Replace This)")
         console.log("| Support URL: (Replace This)")
-        console.log("| Github URL: (Replace This)")
+        console.log("| Github URL: https://github.com/tristanbudd/cosmic-bot")
         console.log("| Bot By: Tristan Budd (https://github.com/tristanbudd)")
         console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     }, 1000);

@@ -1,5 +1,5 @@
 const fs = require("fs")
-const package_data = JSON.parse(fs.readFileSync("package.json", 'utf8'))
+const package_data = JSON.parse(fs.readFileSync("package.json", "utf8"))
 const version = package_data.version
 const node_version = require("node:process").version;
 const { get_up_time } = require("../modules/uptime");
